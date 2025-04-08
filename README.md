@@ -22,6 +22,6 @@ npm install
 
 Run `ng serve --port 8081`
 
-You can modify the `src/app/services/tutorial.service.ts` file to adjust how the frontend interacts with the backend.
+You can modify the `src/app/services/tutorial.service.ts` file to adjust how the frontend interacts with the backend
 
 Navigate to `http://localhost:8081/`
