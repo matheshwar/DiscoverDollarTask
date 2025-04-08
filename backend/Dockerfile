@@ -1,4 +1,4 @@
-# Stage 1: Build the app
+# Stage 1: Build the ap
 FROM node:18-alpine as builder
 
 WORKDIR /app
