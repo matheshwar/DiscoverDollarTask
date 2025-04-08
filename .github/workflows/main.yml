@@ -17,10 +17,10 @@ jobs:
 
     - name: 🚀 Build and Push Frontend
       run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/angular-frontend:latest ./frontend
-          docker push ${{ secrets.DOCKER_USERNAME }}/angular-frontend:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest ./frontend
+          docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
 
     - name: ⚙️ Build and Push Backend
       run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/node-backend:latest ./backend
-          docker push ${{ secrets.DOCKER_USERNAME }}/node-backend:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest ./backend
+          docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
