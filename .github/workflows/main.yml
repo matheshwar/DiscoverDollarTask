@@ -24,22 +24,49 @@ jobs:
       run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/backend:latest ./backend
           docker push ${{ secrets.DOCKER_USERNAME }}/backend:latest
-    - name: Executing remote SSH commands on EC2
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST_DNS }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        envs: DOCKER_USERNAME, DOCKER_PASSWORD
-        script: |
-          cd /home/ubuntu/DiscoverDollarTask
-          
-          # Pull latest Docker images
-          echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-          docker pull $DOCKER_USERNAME/frontend:latest
-          docker pull $DOCKER_USERNAME/backend:latest
-    
-          # Restart containers
-          docker-compose down
-          docker-compose up -d
-
+  deploy:
+    name: 🚀 Deploy to EC2
+    runs-on: ubuntu-latest
+    needs: build
+  
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+  
+      - name: Executing remote SSH commands on EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          envs: DOCKER_USERNAME, DOCKER_PASSWORD
+          script: |
+            # Ensure Docker and Compose are installed
+            if ! command -v docker &> /dev/null; then
+              curl -fsSL https://get.docker.com -o get-docker.sh
+              sudo sh get-docker.sh
+              sudo usermod -aG docker $USER
+            fi
+  
+            if ! command -v docker-compose &> /dev/null; then
+              sudo apt-get update -y
+              sudo apt-get install -y docker-compose
+            fi
+  
+            # Ensure project directory exists
+            cd /home/ubuntu
+  
+            if [ ! -d "DiscoverDollarTask" ]; then
+              git clone https://github.com/matheshwar/DiscoverDollarTask.git DiscoverDollarTask
+            fi
+  
+            cd DiscoverDollarTask
+            git pull origin main
+  
+            # Login to Docker Hub
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  
+            # Pull latest images and restart containers
+            docker-compose pull
+            docker-compose down
+            docker-compose up -d --build
