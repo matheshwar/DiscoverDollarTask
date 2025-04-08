@@ -19,6 +19,10 @@ Prerequisites
 Dockerized the Application:
     
   • I wrote Dockerfiles for both the frontend and backend services, allowing them to run as containers.
-  • Here I have attach some images of docker build stage  
+  
+  • Here I have attach some images of docker build stage for frontend 
     ![Alt Text](https://github.com/matheshwar/DiscoverDollarTask/blob/main/Screenshots/frontend1.png?raw=true)
+    ![Alt Text](https://github.com/matheshwar/DiscoverDollarTask/blob/main/Screenshots/frontend9.png?raw=true)
+    ![Alt Text](https://github.com/matheshwar/DiscoverDollarTask/blob/main/Screenshots/frontend10.png?raw=true)
+
   • Created a Docker Compose file to manage the entire multi-container application. This ensures that all services (frontend, backend, MongoDB) are spun up and connected seamlessly.
