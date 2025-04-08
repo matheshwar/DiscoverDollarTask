@@ -1,4 +1,4 @@
-Project Overview
+# Project Overview
 
 In this project, I have deployed a full-stack MEAN application using Docker for containerization, Nginx as a reverse proxy, and set up a CI/CD pipeline using GitHub Actions for automated build and deployment. The primary objective was to make the application easily deployable and scalable while ensuring smooth deployment through automated pipelines.
 
