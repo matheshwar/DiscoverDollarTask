@@ -4,20 +4,20 @@ In this project, I have deployed a full-stack MEAN application using Docker for 
 
 Prerequisites
 
-    • Before you begin, ensure you have the following installed on your machine:
+  • Before you begin, ensure you have the following installed on your machine:
    
-    • Docker: For containerizing the application
+  • Docker: For containerizing the application
     
-    • Docker Compose: For managing multi-container Docker applications
+  • Docker Compose: For managing multi-container Docker applications
     
-    • Git: For cloning the repository
+  • Git: For cloning the repository
     
-    • Nginx: For setting up the reverse proxy
+  • Nginx: For setting up the reverse proxy
     
-    • AWS EC2 : For deploying to the cloud
+  • AWS EC2 : For deploying to the cloud
 
 Dockerized the Application:
     
-    • I wrote Dockerfiles for both the frontend and backend services, allowing them to run as containers.
+  • I wrote Dockerfiles for both the frontend and backend services, allowing them to run as containers.
     
-    • Created a Docker Compose file to manage the entire multi-container application. This ensures that all services (frontend, backend, MongoDB) are spun up and connected seamlessly.
+  • Created a Docker Compose file to manage the entire multi-container application. This ensures that all services (frontend, backend, MongoDB) are spun up and connected seamlessly.
