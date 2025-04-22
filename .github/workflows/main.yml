@@ -42,9 +42,11 @@ jobs:
             if ! command -v docker &> /dev/null; then
               curl -fsSL https://get.docker.com -o get-docker.sh
               sudo sh get-docker.sh
-              sudo usermod -aG docker ubuntu
-              newgrp docker
+              
             fi
+            
+            sudo usermod -aG docker ubuntu
+            newgrp docker
   
             if ! command -v docker-compose &> /dev/null; then
               sudo apt-get update -y
